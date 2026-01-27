@@ -23,7 +23,7 @@ public class Lampara {
         return calificacion;
     }
 
-    public static void encender(){
+    public void encender(){
         System.out.println("La lámpara se ha encendido.");
     }
 
