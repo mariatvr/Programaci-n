@@ -1,7 +1,5 @@
 package Ejercicio4Tarea3;
 
-import Ejercicio3Tarea3.MainPolimorfismo;
-
 public class MainPintura {
     static class Forma{
         protected String nombre;
