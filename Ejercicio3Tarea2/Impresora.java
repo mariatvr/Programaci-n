@@ -20,14 +20,13 @@ public class Impresora {
     public int metoToner(int masToner){
         if(masToner>100 || masToner<0){
             return -1;
-        } else{
-            this.nivelToner=nivelToner+masToner;
         }
-        if(nivelToner>100 || nivelToner<0){
+
+        if(this.nivelToner + masToner > 100){
             return -1;
-        } else {
-            return nivelToner;
         }
+        this.nivelToner += masToner;
+        return this.nivelToner;
     }
 
     public int imprimePag(int numPag){
