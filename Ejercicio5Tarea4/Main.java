@@ -20,5 +20,12 @@ public class Main {
         System.out.println("Impuestos de la muñeca: "+muneca.calculoImpuestos()+" €");
         System.out.println("Impuestos del libro: "+libro.calculoImpuestos()+" €");
 
+        Bienes[] inventario = {silla, cacahuetes, muneca, libro};
+        System.out.println("\n--- IMPRIMIENDO DESDE EL ARRAY ---");
+        // Recorremos el array
+        for (Bienes item : inventario) {
+            System.out.println(item);
+        }
+
     }
 }
