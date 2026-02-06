@@ -1,24 +1,24 @@
 package Tarea5;
 
-public class Rectangulo extends Forma implements Redimensionable{
+public class Rectangulo extends Forma implements Redimensionable, Comparable<Rectangulo>{
     private double ancho;
     private double alto;
 
-    public Rectangulo(int numLados, double ancho, double alto){
-        super(numLados);
+    public Rectangulo(double alto, double ancho){
+        super(4);
         this.ancho=ancho;
         this.alto=alto;
     }
 
 
     @Override
-    public void getArea() {
-        System.out.println("Área del rectángulo: "+ancho*alto);
+    public double getArea() {
+        return ancho*alto;
     }
 
     @Override
-    public void getPerimeter() {
-        System.out.println("Área del rectángulo: "+((ancho*2)+(alto*2)));
+    public double getPerimeter() {
+        return (ancho*2)+(alto*2);
     }
 
     @Override
@@ -27,5 +27,21 @@ public class Rectangulo extends Forma implements Redimensionable{
         this.alto=x;
         System.out.println("Alto del rectángulo redimensionado: "+ancho);
         System.out.println("Ancho del rectángulo redimensionado: "+alto);
+    }
+
+
+    @Override
+    public int compareTo(Rectangulo c) {
+        int resultado=0;
+        if (this.getArea()<c.getArea()) {   resultado = -1;      }
+        else if (this.getArea() > c.getArea()){    resultado = 1;      }
+        else { return 0;}
+
+        return resultado;
+    }
+
+    @Override
+    public String toString() {
+        return "Altura del rectángulo: "+this.alto+"\nAnchura del rectángulo: "+this.ancho;
     }
 }

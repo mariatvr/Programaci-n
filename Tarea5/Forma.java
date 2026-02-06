@@ -11,7 +11,7 @@ public abstract class Forma {
         return numLados;
     }
 
-    public abstract void getArea();
+    public abstract double getArea();
 
-    public abstract void getPerimeter();
+    public abstract double getPerimeter();
 }
