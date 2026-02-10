@@ -35,14 +35,15 @@ public class TelefonoMovil {
     }
 
     public boolean updateContact (Contacto oldContact, Contacto newContact){
-        if (findContact(oldContact.getName())<0){
+        int position = findContact(oldContact.getName());
+        if (position <0){
             System.out.println("El contacto no existe.");
             return false;
         } else if (findContact(newContact.getName())>=0){
             System.out.println("El contacto que quieres introducir nuevo ya existe.");
             return false;
         } else {
-            this.myContacts.set(this.myContacts.indexOf(oldContact), newContact);
+            this.myContacts.set(position, newContact);
             System.out.println("El contacto "+oldContact.getName()+ " ha sido actualizado.");
             return true;
         }
