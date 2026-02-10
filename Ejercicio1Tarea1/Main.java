@@ -27,14 +27,10 @@ public class Main {
         System.out.println("Introduce el número de teléfono:");
         String numero = scanner.nextLine();
 
-        // Usamos el método factory estático de la clase Contacto
+        // Usamos el metodo factor y estático de la clase Contacto
         Contacto nuevoContacto = Contacto.createContact(nombre, numero);
 
-        if (telefono.addNewContact(nuevoContacto)) {
-            System.out.println("Contacto añadido con éxito: " + nombre);
-        } else {
-            System.out.println("Error: No se pudo añadir el contacto " + nombre + " (posiblemente ya existe).");
-        }
+        telefono.addNewContact(nuevoContacto);
     }
 
     // Opción 3: Actualizar contacto

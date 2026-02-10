@@ -31,6 +31,7 @@ public class TelefonoMovil {
             return false;
         }
         myContacts.add(c);
+        System.out.println("Contacto añadido con éxito.");
         return true;
     }
 
