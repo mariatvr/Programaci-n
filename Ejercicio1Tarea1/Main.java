@@ -4,11 +4,6 @@ import java.util.Scanner;
 
 public class Main {
 
-    // Scanner estático para usarlo en todos los métodos
-    private static Scanner scanner = new Scanner(System.in);
-    // Instancia estática del teléfono para gestionarla desde el main
-    private static TelefonoMovil telefono = new TelefonoMovil("600123456");
-
     private static void imprimirMenu() {
         System.out.println("\n--- Menú de Opciones ---");
         System.out.println("0 - Salir");
@@ -20,90 +15,17 @@ public class Main {
         System.out.println("6 - Volver a imprimir opciones");
     }
 
-    // Opción 2: Agregar contacto
-    private static void agregarContacto() {
-        System.out.println("Introduce el nombre del nuevo contacto:");
-        String nombre = scanner.nextLine();
-        System.out.println("Introduce el número de teléfono:");
-        String numero = scanner.nextLine();
-
-        // Usamos el metodo factor y estático de la clase Contacto
-        Contacto nuevoContacto = Contacto.createContact(nombre, numero);
-
-        telefono.addNewContact(nuevoContacto);
-    }
-
-    // Opción 3: Actualizar contacto
-    private static void actualizarContacto() {
-        System.out.println("Introduce el nombre del contacto actual a actualizar:");
-        String nombreActual = scanner.nextLine();
-
-        // Primero verificamos si existe usando queryContact
-        Contacto contactoExistente = telefono.queryContact(nombreActual);
-
-        if (contactoExistente == null) {
-            System.out.println("Error: No se encontró el contacto " + nombreActual);
-            return;
-        }
-
-        System.out.println("Introduce el NUEVO nombre:");
-        String nuevoNombre = scanner.nextLine();
-        System.out.println("Introduce el NUEVO número de teléfono:");
-        String nuevoNumero = scanner.nextLine();
-
-        Contacto nuevoContacto = Contacto.createContact(nuevoNombre, nuevoNumero);
-
-        if (telefono.updateContact(contactoExistente, nuevoContacto)) {
-            System.out.println("Contacto actualizado correctamente.");
-        } else {
-            System.out.println("Error al actualizar el contacto.");
-        }
-    }
-
-    // Opción 4: Eliminar contacto
-    private static void eliminarContacto() {
-        System.out.println("Introduce el nombre del contacto a eliminar:");
-        String nombre = scanner.nextLine();
-
-        // Necesitamos obtener el objeto Contacto primero para pasarlo a removeContact
-        Contacto contactoExistente = telefono.queryContact(nombre);
-
-        if (contactoExistente == null) {
-            System.out.println("Error: No se encontró el contacto.");
-            return;
-        }
-
-        if (telefono.removeContact(contactoExistente)) {
-            System.out.println("Contacto eliminado con éxito.");
-        } else {
-            System.out.println("Error al eliminar el contacto.");
-        }
-    }
-
-    // Opción 5: Buscar contacto
-    private static void buscarContacto() {
-        System.out.println("Introduce el nombre del contacto a buscar:");
-        String nombre = scanner.nextLine();
-
-        Contacto contacto = telefono.queryContact(nombre);
-
-        if (contacto == null) {
-            System.out.println("El contacto no existe en la agenda.");
-        } else {
-            System.out.println("Contacto encontrado: " + contacto.getName() +
-                    " -> Teléfono: " + contacto.getPhoneNumber());
-        }
-    }
-
 
     public static void main (String[]args){
         boolean continuar = true;
         int opcion = 0;
+        Scanner scanner = new Scanner(System.in);
+        TelefonoMovil telefono = new TelefonoMovil("600123456");
 
         imprimirMenu();
 
         while (continuar) {
-            System.out.println("\nElige una opción: (6 para mostrar las opciones)");
+            System.out.println("\nElige una opción: (6 para mostrar las opciones): ");
             // Validación simple para evitar errores si meten letras
             if (scanner.hasNextInt()) {
                 opcion = scanner.nextInt();
@@ -123,16 +45,66 @@ public class Main {
                     telefono.printContacts();
                     break;
                 case 2:
-                    agregarContacto();
+                    System.out.println("Introduce el nombre del nuevo contacto:");
+                    String nombre = scanner.nextLine();
+                    System.out.println("Introduce el número de teléfono:");
+                    String numero = scanner.nextLine();
+
+                    // Usamos el metodo factor y estático de la clase Contacto
+                    Contacto nuevoContacto = Contacto.createContact(nombre, numero);
+
+                    telefono.addNewContact(nuevoContacto);
                     break;
                 case 3:
-                    actualizarContacto();
+                    System.out.println("Introduce el nombre del contacto actual a actualizar:");
+                    String nombreActual = scanner.nextLine();
+
+                    // Primero verificamos si existe usando queryContact
+                    Contacto contactoExistente = telefono.queryContact(nombreActual);
+
+                    if (contactoExistente == null) {
+                        System.out.println("Error: No se encontró el contacto " + nombreActual);
+                    }
+
+                    if (contactoExistente != null) {
+                    System.out.println("Introduce el NUEVO nombre:");
+                    String nuevoNombre = scanner.nextLine();
+                    System.out.println("Introduce el NUEVO número de teléfono:");
+                    String nuevoNumero = scanner.nextLine();
+
+                    Contacto nuevoContacto1 = Contacto.createContact(nuevoNombre, nuevoNumero);
+
+                    telefono.updateContact(contactoExistente, nuevoContacto1);
+                    }
                     break;
                 case 4:
-                    eliminarContacto();
+                    System.out.println("Introduce el nombre del contacto a eliminar:");
+                    String nombre2 = scanner.nextLine();
+
+                    // Necesitamos obtener el objeto Contacto primero para pasarlo a removeContact
+                    Contacto contactoExistente1 = telefono.queryContact(nombre2);
+
+                    if (contactoExistente1 == null) {
+                        System.out.println("Error: No se encontró el contacto.");
+                    }
+
+                    if (contactoExistente1 != null) {
+                        telefono.removeContact(contactoExistente1);
+                    }
+
                     break;
                 case 5:
-                    buscarContacto();
+                    System.out.println("Introduce el nombre del contacto a buscar:");
+                    String nombre3 = scanner.nextLine();
+
+                    Contacto contacto = telefono.queryContact(nombre3);
+
+                    if (contacto == null) {
+                        System.out.println("El contacto no existe en la agenda.");
+                    } else {
+                        System.out.println("Contacto encontrado: " + contacto.getName() +
+                                " -> Teléfono: " + contacto.getPhoneNumber());
+                    }
                     break;
                 case 6:
                     imprimirMenu();

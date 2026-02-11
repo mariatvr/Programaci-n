@@ -41,7 +41,7 @@ public class TelefonoMovil {
             System.out.println("El contacto no existe.");
             return false;
         } else if (findContact(newContact.getName())>=0){
-            System.out.println("El contacto que quieres introducir nuevo ya existe.");
+            System.out.println("El nombre que quieres introducir nuevo ya existe en contactos.");
             return false;
         } else {
             this.myContacts.set(position, newContact);
