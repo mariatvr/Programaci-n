@@ -3,6 +3,7 @@ package Ejercicio1Tarea2;
 import Ejercicio1Tarea1.Contacto;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.ListIterator;
 
 public class Album {
@@ -36,7 +37,7 @@ public class Album {
         return agregada;
     }
 
-    public boolean addToPlayList (int numPista, ListIterator<Cancion> playList){
+    public boolean addToPlayList (int numPista, LinkedList<Cancion> playList){
         int posicion = numPista -1;
         if (posicion>=0 && posicion<canciones.size()){
             playList.add(this.canciones.get(posicion));
@@ -44,4 +45,15 @@ public class Album {
         }
         return false;
     }
+
+    public boolean addToPlayList(String titulo, LinkedList<Cancion> playList) {
+        Cancion cancionEncontrada = findSong(titulo);
+        if (cancionEncontrada != null) {
+            playList.add(cancionEncontrada);
+            return true;
+        }
+        // System.out.println("La canción " + titulo + " no está en este álbum.");
+        return false;
+    }
+
 }
