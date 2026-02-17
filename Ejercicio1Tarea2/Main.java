@@ -14,6 +14,7 @@ public class Main {
         System.out.println("3 - Repetir la canción actual");
         System.out.println("4 - Imprimir la lista de canciones en la playlist");
         System.out.println("5 - Volver a imprimir el menú");
+        System.out.println("6 - Eliminar canción de la playlist");
     }
 
     private static void imprimirLista(LinkedList<Cancion> playList) {
@@ -39,7 +40,7 @@ public class Main {
             System.out.println("No hay canciones en la playlist");
             return;
         } else {
-            System.out.println("Reproduciendo: " + listIterator.next());
+            System.out.println("\nReproduciendo: " + listIterator.next());
             imprimirMenu();
         }
 
@@ -82,23 +83,49 @@ public class Main {
                         }
                         haciaAdelante = false;
                     }
-                    // Ahora sí retrocedemos
+
                     if (listIterator.hasPrevious()) {
                         System.out.println("Reproduciendo anterior: " + listIterator.previous());
                     } else {
                         System.out.println("Estás al principio de la lista.");
-                        haciaAdelante = true; // Para que no intente retroceder más
+                        haciaAdelante = true;
                     }
 
                     break;
                 case 3:
-
+                    if (haciaAdelante) {
+                        if (listIterator.hasPrevious()) {
+                            System.out.println("Repitiendo: " + listIterator.previous());
+                            haciaAdelante = false;
+                        } else {
+                            if (listIterator.hasNext()) {
+                                System.out.println("Repitiendo: " + listIterator.next());
+                            }
+                        }
+                    } else {
+                        if (listIterator.hasNext()) {
+                            System.out.println("Repitiendo: " + listIterator.next());
+                            haciaAdelante = true;
+                        } else {
+                            if(listIterator.hasPrevious()){
+                                System.out.println("Repitiendo: " + listIterator.previous());
+                            }
+                        }
+                    }
                     break;
                 case 4:
                     imprimirLista(playList);
                     break;
                 case 5:
                     imprimirMenu();
+                    break;
+                case 6:
+                    listIterator.remove();
+                    if(listIterator.hasNext()){
+                        System.out.println("Reproduciendo ahora: " + listIterator.next());
+                    } else {
+                        System.out.println("Reproduciendo ahora: " + listIterator.previous());
+                    }
                     break;
                 default:
                     System.out.println("Opción no válida.");
@@ -127,9 +154,8 @@ public class Main {
         LinkedList<Cancion> miPlayList = new LinkedList<Cancion>();
         albumes.get(0).addToPlayList("Mercedes Carota", miPlayList);
         albumes.get(0).addToPlayList("Seda", miPlayList);
-        albumes.get(1).addToPlayList("Ni me conozco", miPlayList);
-        albumes.get(1).addToPlayList("Tú con él", miPlayList);
-        imprimirMenu();
+        albumes.get(1).addToPlayList(2, miPlayList);
+        albumes.get(1).addToPlayList(3, miPlayList);
 
         play(miPlayList);
     }
