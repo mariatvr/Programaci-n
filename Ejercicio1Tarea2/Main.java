@@ -46,12 +46,13 @@ public class Main {
 
         boolean haciaAdelante = true;
         while (continuar) {
-            System.out.println("\nElige una opción: (5 para mostrar el menú): ");
-            if (scanner.hasNextInt()) {
+            //Control de que se introduzca un número y no otros caracteres
+            try {
+                System.out.println("\nElige una opción: (5 para mostrar el menú): ");
                 opcion = scanner.nextInt();
                 scanner.nextLine();
-            } else {
-                System.out.println("Error: Por favor, introduce un número.");
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Por favor, introduce un número válido.");
                 scanner.nextLine();
                 continue;
             }
