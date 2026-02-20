@@ -6,20 +6,20 @@ import java.util.Map;
 public class Ubicacion {
     protected int id;
     protected String descripcion;
-    protected Map<String, Integer> exists;
+    protected Map<String, Integer> exits;
 
     public Ubicacion(int id, String descripcion){
         this.id=id;
         this.descripcion=descripcion;
-        Map<String, Integer> exists = new HashMap<>();
+        exits = new HashMap<>();
     }
 
     public int getId() {
         return id;
     }
 
-    public Map<String, Integer> getExists() {
-        return exists;
+    public Map<String, Integer> getExits() {
+        return exits;
     }
 
     public String getDescripcion() {
@@ -27,6 +27,6 @@ public class Ubicacion {
     }
 
     public void addExit(String direccion, int idUbicacion){
-        exists.put(direccion, idUbicacion);
+        exits.put(direccion, idUbicacion);
     }
 }
