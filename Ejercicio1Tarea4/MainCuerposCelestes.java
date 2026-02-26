@@ -73,7 +73,7 @@ public class MainCuerposCelestes {
             System.out.println(cuerpoCeleste.getNombre());
         }
 
-        //Obtener las luneas de Marte
+        //Obtener las lunas de Marte
         System.out.println("\nLunas que tiene Marte: ");
         CuerpoCeleste marteEncontrado = null;
 
@@ -119,5 +119,28 @@ public class MainCuerposCelestes {
         for (CuerpoCeleste planeta : planetas) {
             System.out.println(planeta);
         }
+
+        //Diferencia e intersección
+        //removeAll() → diferencia
+        //retainAll() → intersección
+
+        Set<CuerpoCeleste> lunasMarte = new HashSet<>(Marte.getSatelites());
+
+        Set<CuerpoCeleste> diferencia = new HashSet<>(lunas);
+        diferencia.removeAll(lunasMarte);
+
+        Set<CuerpoCeleste> interseccion = new HashSet<>(lunas);
+        interseccion.retainAll(lunasMarte);
+
+        System.out.println("\nDiferencia lunas y lunas Marte");
+        for (CuerpoCeleste luna : diferencia){
+            System.out.println(luna);
+        }
+
+        System.out.println("\nIntersección lunas y lunas Marte");
+        for (CuerpoCeleste luna : interseccion){
+            System.out.println(luna);
+        }
+
     }
 }
