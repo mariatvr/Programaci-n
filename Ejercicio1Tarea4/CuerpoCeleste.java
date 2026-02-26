@@ -60,6 +60,6 @@ public class CuerpoCeleste {
 
     @Override
     public String toString() {
-        return "\nNombre: "+this.nombre + "\nTipo: "+this.tipoCuerpo+"\nPeriodo Obrital: "+periodoOrbital;
+        return "\nNombre: "+this.nombre + "\nTipo: "+this.tipoCuerpo+"\nPeriodo Obital: "+periodoOrbital;
     }
 }
