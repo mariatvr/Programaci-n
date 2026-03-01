@@ -30,13 +30,21 @@ public class Aeropuerto {
         return null;
     }
 
-    public Vuelo encontrarVueloClave(String clave) {
+    public ArrayList<Vuelo> encontrarVueloClave(String clave ,String valor) {
+        ArrayList<Vuelo> encontrados = new ArrayList<>();
+
         for (Vuelo vuelo : this.vuelos) {
-            if (vuelo.getOrigen().equals(clave)) {
-                return vuelo;
+            if (clave.equalsIgnoreCase("origen") && vuelo.getOrigen().equalsIgnoreCase(valor)) {
+                encontrados.add(vuelo);
+            } else if (clave.equalsIgnoreCase("destino") && vuelo.getDestino().equalsIgnoreCase(valor)){
+                encontrados.add(vuelo);
+            } else if (clave.equalsIgnoreCase("dia") || clave.equalsIgnoreCase("día")){
+                if (vuelo.getDia().equalsIgnoreCase(valor))encontrados.add(vuelo);
+            } else if (clave.equalsIgnoreCase("clase") && vuelo.getClase().equalsIgnoreCase(valor)){
+                encontrados.add(vuelo);
             }
         }
-        return null;
+        return encontrados;
     }
 
     public boolean addVuelo (String numero, String origen, String destino, String dia, String clase){
