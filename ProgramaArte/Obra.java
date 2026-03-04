@@ -1,5 +1,7 @@
 package ProgramaArte;
 
+import java.util.Objects;
+
 public class Obra {
     private String nombre;
     private String tipo;
@@ -35,4 +37,18 @@ public class Obra {
     public String toString() {
         return nombre + " (" + anio + ") - " + tipo + " | Precio: " + precioMillones + "M€ | Artista: " + artista.getNombre();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Obra obra = (Obra) o;
+        return Objects.equals(nombre, obra.nombre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(nombre);
+    }
+
+
 }
