@@ -2,10 +2,7 @@ package ProgramaVuelos;
 
 import Ejercicio1Tarea2.Cancion;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 
 public class MainVuelos {
     private static void imprimirMenu() {
@@ -44,13 +41,20 @@ public class MainVuelos {
         boolean continuar = true;
 
         while (continuar) {
-            System.out.println("\n================================");
-            System.out.println("VUELOS DEL AEROPUERTO DE " + Valencia.getNombre());
-            System.out.println("================================");
-            imprimirMenu();
-            System.out.print("Dame la opción: ");
-            int opcion = sc.nextInt();
-            sc.nextLine();
+            int opcion;
+            try {
+                System.out.println("\n================================");
+                System.out.println("VUELOS DEL AEROPUERTO DE " + Valencia.getNombre());
+                System.out.println("================================");
+                imprimirMenu();
+                System.out.print("Dame la opción: ");
+                opcion = sc.nextInt();
+                sc.nextLine();
+            }catch (InputMismatchException e){
+                System.out.println("Por favor, introduzca un número.");
+                sc.nextLine();
+                continue;
+            }
 
             switch (opcion) {
                 case 0:
@@ -130,7 +134,9 @@ public class MainVuelos {
                             System.out.println("El número de vuelo no existe.");
                         }
                     }
-
+                    break;
+                default:
+                    System.out.println("Introduzca un número de las opciones.");
 
             }
 
